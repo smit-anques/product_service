@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package platform_category;
+
+service PlateformCategoryService {
+  rpc CreatePlatformCategory(CreatePlatformCategoryRequest) returns (PlatformCategoryResponse);
+  rpc ListPlatformCategories(Empty) returns (PlatformCategoryListResponse);
+  rpc UpdatePlatformCategory(UpdatePlatformCategoryRequest) returns (PlatformCategoryResponse);
+  rpc DeletePlatformCategory(DeletePlatformCategoryRequest) returns (PlatformCategoryResponse);
+}
+
+message Empty {}
+
+message CreatePlatformCategoryRequest {
+  string name = 1;
+  string slug = 2;
+  string image = 3;
+  bool is_active = 4;
+}
+
+message UpdatePlatformCategoryRequest {
+  int32 id = 1;
+  string name = 2;
+  string slug = 3;
+  string image = 4;
+  bool is_active = 5;
+}
+
+message DeletePlatformCategoryRequest {
+  int32 id = 1;
+}
+
+message PlatformCategory {
+  int32 id = 1;
+  string name = 2;
+  string slug = 3;
+  string image = 4;
+  bool is_active = 5;
+}
+
+message PlatformCategoryResponse {
+  bool status = 1;
+  string message = 2;
+  PlatformCategory data = 3;
+}
+
+message PlatformCategoryListResponse {
+  bool status = 1;
+  string message = 2;
+  repeated PlatformCategory data = 3;
+}

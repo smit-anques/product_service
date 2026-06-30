@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package category;
+
+service CategoryService {
+  rpc CreateCategory(CreateCategoryRequest) returns (CategoryResponse);
+  rpc ListCategories(Empty) returns (CategoryListResponse);
+  rpc UpdateCategory(UpdateCategoryRequest) returns (CategoryResponse);
+  rpc DeleteCategory(DeleteCategoryRequest) returns (CategoryResponse);
+}
+
+message Empty {}
+
+message CreateCategoryRequest {
+  string name = 1;
+  string slug = 2;
+  string image = 3;
+  bool is_active = 4;
+  int32 platform_category_id = 5;
+}
+
+message UpdateCategoryRequest {
+  int32 id = 1;
+  string name = 2;
+  string slug = 3;
+  string image = 4;
+  bool is_active = 5;
+  int32 platform_category_id = 6;
+}
+
+message DeleteCategoryRequest {
+  int32 id = 1;
+}
+
+message Category {
+  int32 id = 1;
+  string name = 2;
+  string slug = 3;
+  string image = 4;
+  bool is_active = 5;
+  int32 platform_category_id = 6;
+}
+
+message CategoryResponse {
+  bool status = 1;
+  string message = 2;
+  Category data = 3;
+}
+
+message CategoryListResponse {
+  bool status = 1;
+  string message = 2;
+  repeated Category data = 3;
+}
