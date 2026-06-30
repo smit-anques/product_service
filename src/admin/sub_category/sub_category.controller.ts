@@ -1,18 +1,10 @@
-import {
-    Body,
-    Controller,
-    Delete,
-    Get,
-    Param,
-    Post,
-    Put,
-} from '@nestjs/common';
-import { PlateformCatrgoryService } from './plateform_catrgory.service';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { SubCategoryService } from './sub_category.service';
 
-@Controller('api/admin/platform-category')
-export class PlateformCatrgoryController {
+@Controller('api/admin/sub-category')
+export class SubCategoryController {
     constructor(
-        private readonly plateformCategoryService: PlateformCatrgoryService,
+        private readonly SubCategoryService: SubCategoryService,
     ) { }
 
     @Post('/create')
@@ -20,10 +12,10 @@ export class PlateformCatrgoryController {
         @Body() body: any
     ) {
         try {
-            const category = await this.plateformCategoryService.create(body);
+            const category = await this.SubCategoryService.create(body);
             return {
                 status: true,
-                message: 'plateform category created successfully.',
+                message: 'sub category created successfully.',
                 data: category,
             };
         } catch (error) {
@@ -34,11 +26,11 @@ export class PlateformCatrgoryController {
     @Get('/list')
     async findAll() {
         try {
-            const response = await this.plateformCategoryService.findAll();
+            const response = await this.SubCategoryService.findAll();
 
             return {
                 status: true,
-                message: 'Platform categories fetched successfully.',
+                message: 'sub categories fetched successfully.',
                 data: response,
             };
         } catch (error) {
@@ -49,16 +41,16 @@ export class PlateformCatrgoryController {
         }
     }
 
-     @Put('update/:id')
+    @Put('update/:id')
     async updateplateformCategory(
         @Param('id') id: number,
         @Body() body: any
     ) {
         try {
-            const category = await this.plateformCategoryService.update(id, body);
+            const category = await this.SubCategoryService.update(id, body);
             return {
                 status: true,
-                message: 'plateform category updated successfully.',
+                message: 'sub category updated successfully.',
                 data: category,
             };
         } catch (error) {
@@ -72,10 +64,10 @@ export class PlateformCatrgoryController {
         @Body() body: any
     ) {
         try {
-           await this.plateformCategoryService.update(id, body);
+            await this.SubCategoryService.update(id, body);
             return {
                 status: true,
-                message: 'plateform category deleted successfully.',
+                message: 'sub category deleted successfully.',
             };
         } catch (error) {
             return { status: false, message: error.message }

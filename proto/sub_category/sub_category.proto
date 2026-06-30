@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package sub_category;
+
+service SubCategoryService {
+  rpc CreateSubCategory(CreateSubCategoryRequest) returns (SubCategoryResponse);
+  rpc ListSubCategories(Empty) returns (SubCategoryListResponse);
+  rpc UpdateSubCategory(UpdateSubCategoryRequest) returns (SubCategoryResponse);
+  rpc DeleteSubCategory(DeleteSubCategoryRequest) returns (SubCategoryResponse);
+}
+
+message Empty {}
+
+message CreateSubCategoryRequest {
+  string name = 1;
+  string slug = 2;
+  string image = 3;
+  bool is_active = 4;
+  int32 category_id = 5;
+}
+
+message UpdateSubCategoryRequest {
+  int32 id = 1;
+  string name = 2;
+  string slug = 3;
+  string image = 4;
+  bool is_active = 5;
+  int32 category_id = 6;
+}
+
+message DeleteSubCategoryRequest {
+  int32 id = 1;
+}
+
+message SubCategory {
+  int32 id = 1;
+  string name = 2;
+  string slug = 3;
+  string image = 4;
+  bool is_active = 5;
+  int32 category_id = 6;
+}
+
+message SubCategoryResponse {
+  bool status = 1;
+  string message = 2;
+  SubCategory data = 3;
+}
+
+message SubCategoryListResponse {
+  bool status = 1;
+  string message = 2;
+  repeated SubCategory data = 3;
+}

@@ -11,6 +11,8 @@ import { PlateformCategoryModule } from './admin/plateform_catrgory/plateform_ca
 import { CategoryModule } from './admin/category/catrgory.module';
 import { UserPlateformCategoryModule } from './user/plateform_category/plateform_catrgory.module';
 import { UserCategoryModule } from './user/category/catrgory.module';
+import { SubCategoryModule } from './admin/sub_category/sub_category.module';
+import { UserSubCategoryModule } from './user/sub_category/sub_category.module';
 
 @Module({
   imports: [
@@ -24,7 +26,9 @@ import { UserCategoryModule } from './user/category/catrgory.module';
     PlateformCategoryModule,
     CategoryModule,
     UserPlateformCategoryModule,
-    UserCategoryModule
+    UserCategoryModule,
+    SubCategoryModule,
+    UserSubCategoryModule
   ],
   controllers: [AppController],
   providers: [AppService],

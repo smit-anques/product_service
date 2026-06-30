@@ -1,19 +1,17 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { StringValue } from 'ms';
 import { JwtModule } from '@nestjs/jwt';
-import { PlatformCategory } from 'schema/plateform_category.schema';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { CatrgoryController } from './catrgory.controller';
-import { CatrgoryService } from './catrgory.service';
 import { Category } from 'schema/category.schema';
-import { CatrgoryGrpcController } from './catrgory.grpc.controller';
-
+import { SubCategoryController } from './sub_category.controller';
+import { SubCategoryService } from './sub_category.service';
+import { SubCategory } from 'schema/sub_category.schema';
+import { SubCatrgoryGrpcController } from './sub_catrgory.grpc.controller';
 
 @Module({
     imports: [
         ConfigModule,
-        TypeOrmModule.forFeature([PlatformCategory,Category]),
+        TypeOrmModule.forFeature([Category,SubCategory]),
         JwtModule.registerAsync({
             imports: [ConfigModule],
             useFactory: (configService: ConfigService) => ({
@@ -23,8 +21,8 @@ import { CatrgoryGrpcController } from './catrgory.grpc.controller';
             inject: [ConfigService],
         }),
     ],
-    controllers: [CatrgoryController,CatrgoryGrpcController],
-    providers: [CatrgoryService],
-    exports: [CatrgoryService],
+    controllers: [SubCategoryController,SubCatrgoryGrpcController],
+    providers: [SubCategoryService],
+    exports: [SubCategoryService],
 })
-export class CategoryModule { }
+export class SubCategoryModule { }
